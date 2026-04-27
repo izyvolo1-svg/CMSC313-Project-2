@@ -1,10 +1,32 @@
-.section .data # Data section
-message: .asciz "Hello, World!" # Declare a null-terminated ASCII string
-.section .text # Text section
+.section .data
+prompt: .ascii "enter text: "
+len = . - prompt
+
+.section .bss
+.lcomm buffer, 128
+
+.section .text
 .globl _start
+
 _start:
-mov $4, %eax # syscall number 4 (sys_write)
-mov $1, %ebx # file descriptor 1 (stdout)
-mov $message, %ecx # address of the message string
-mov $13, %edx # length of the string (13 characters)
-int $0x80 # Global entry point for the program
+    mov $1, %rax
+    mov $1, %rdi
+    mov $prompt, %rsi
+    mov $len, %rdx
+    syscall
+
+    mov $0, %rax
+    mov $0, %rdi
+    mov $buffer, %rsi
+    mov $128, %rdx
+    syscall
+
+    mov %rax, %rdx
+    mov $1, %rax
+    mov $1, %rdi
+    mov $buffer, %rsi
+    syscall
+
+    mov $60, %rax
+    xor %rdi, %rdi
+    syscall
