@@ -3,26 +3,26 @@ prompt: .ascii "Enter Number: "
 len = . - prompt
 
 output: .ascii "The double is: "
-output_len = . - prompt
+output_len = . - output
 
 .section .bss
-.lcomm buffer, 128
+.lcomm input, 128
 
 .section .text
 .globl _start
 
 _start:
 # prints input message
-    mov $1, %rax
-    mov $1, %rdi
-    mov $prompt, %rsi
+    mov $1, %rax #loads printf type shi
+    mov $1, %rdi 
+    mov $prompt, %rsi #loads up prompt into printf type shi
     mov $len, %rdx
     syscall
 
 # reads input from command line
-    mov $0, %rax
+    mov $0, %rax #loads get input type shi
     mov $0, %rdi
-    mov $buffer, %rsi
+    mov $input, %rsi #saves input to input var
     mov $128, %rdx
     syscall
 
@@ -32,7 +32,7 @@ _start:
 
     dec %rax
     
-    mov $buffer, %rsi
+    mov $input, %rsi
     add %rax, %rsi
 
     cmpb $10, (%rsi)
