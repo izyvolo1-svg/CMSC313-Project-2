@@ -5,6 +5,9 @@ len = . - prompt #var for length of prompt
 output: .ascii "The double is: " #var for output txt
 output_len = . - output #var for output length
 
+newline: .ascii "\n" # var for printing newlines
+newlen = . - newline # var for newline len
+
 .section .bss
 .lcomm input, 128 # var for user input
 .lcomm ninput, 4 # var for final version of user input (doubled)
@@ -112,6 +115,13 @@ done_str:
     mov $1, %rdi
     mov %r9, %rsi
     mov %r10, %rdx
+    syscall
+
+# print newline for the sake of output looking better
+    mov $1, %rax
+    mov $1, %rdi
+    mov $newline, %rsi
+    mov $newlen, %rdx
     syscall
 
 # Exit
