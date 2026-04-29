@@ -6,5 +6,5 @@
 # as -o Project_2.o Project_2.s
 # ld -o Project_2 Project_2.o
 # then use "./Project_2" to run
-# input whatever number you want (except for negatives or really really big nums)
+# input whatever number you want (except for negatives, decimals or really really big nums)
 # then double that number will hopefully be printed out (even works with 0)
