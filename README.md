@@ -1,4 +1,4 @@
-# CMSC313-Project-2
+# CMSC313-Project-2 (Assembly program that doubles user inputted positive ints)
 
 # download/copy Project_2.s file/code (should work in gl-server and in vs code with GNU Assembler Language support extension installed)
 
